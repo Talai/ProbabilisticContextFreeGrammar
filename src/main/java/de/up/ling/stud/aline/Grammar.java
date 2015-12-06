@@ -8,15 +8,24 @@ import java.util.Set;
  * Class for a generic grammar class. Saves all rules in a hash set
  * and prints out all rules after adding them.
  */
-public class Grammar <Symbol> {
-    private final Set<ProbabilisticRule<Symbol>> rules;
+// Grammar can only be used with Rule related classes.
+public class Grammar <RuleType extends Rule> {
+    private final Set<RuleType> rules;
 
     public Grammar() {
         this.rules = new HashSet<>();
     }
 
-    public void addRule(ProbabilisticRule<Symbol> rule) {
+    public void addRule(RuleType rule) {
         rules.add(rule);
-        System.out.println(rules);
+    }
+
+    @Override
+    public String toString() {
+        // Using '+' for concatenating strings is not very efficient.
+        // StringBuilder saves strings and concatenates them at the end.
+        StringBuilder sb = new StringBuilder();
+        rules.forEach(rule -> sb.append(rule).append("\n"));
+        return sb.toString();
     }
 }
