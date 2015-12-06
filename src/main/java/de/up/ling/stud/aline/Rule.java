@@ -4,6 +4,7 @@ import java.util.List;
 
 /**
  * Created by Aline Castendiek on 06.12.15.
+ * Class for a generic grammar rule (without probabilities).
  */
 // Generic template
 public class Rule<Symbol> {
@@ -26,5 +27,11 @@ public class Rule<Symbol> {
 
     public int getArity() {
         return rhs.size();
+    }
+
+    @Override
+    // toString method is used to print out stuff.
+    public String toString() {
+        return getLhs() + " -> " + getRhs();
     }
 }
